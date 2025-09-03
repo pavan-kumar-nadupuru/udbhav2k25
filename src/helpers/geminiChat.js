@@ -10,7 +10,14 @@ const model = genAI.getGenerativeModel({ model: import.meta.env.VITE_GEMINI_MODE
  * @param {string} prompt The prompt to send to the language model.
  * @returns {Promise<string>} The model's response text or an error message.
  */
-export const chatWithLLM = async (prompt) => {
+export const chatWithLLM = async (prompt, juggad=0) => {
+  if(juggad)  {
+    if(juggad == 1){
+      return "Juggad mode activated";
+    } else if(juggad == 2){
+      return "Juggad mode 2 activated";
+    }
+  }
   if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
     console.error("chatWithLLM called with an invalid or empty prompt.");
     return "Error: Prompt cannot be empty.";

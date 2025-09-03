@@ -1,20 +1,14 @@
 import './App.css';
 import LLMInterface from './components/LLMInterface';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import RunModePage from './components/RunModePage';
 
 const pages = [
   { name: 'LLM Interface', key: 'llm' },
   { name: 'Run Mode', key: 'run' },
 ];
 
-function RunModePage() {
-  return (
-    <div className="p-10 text-white bg-white/10 rounded-2xl shadow-xl backdrop-blur-md border border-white/20">
-      <h2 className="text-3xl font-semibold mb-4 text-gray-100 tracking-tight">Run Mode</h2>
-      <p className="text-gray-300 text-lg">This is a placeholder for the Run Mode page.</p>
-    </div>
-  );
-}
 
 function App() {
   const [activePage, setActivePage] = useState('llm');
@@ -42,19 +36,17 @@ function App() {
         </nav>
       </aside>
       {/* Main Content - add left margin to account for fixed sidebar */}
-      <main className="flex-1 flex justify-center items-center p-8 bg-gradient-to-br from-white/5 to-gray-900/80 min-h-screen ml-64">
-        <div className="w-full max-w-2xl">
-          {activePage === 'llm' && (
-            <div className="animate-fadein">
-              <LLMInterface />
-            </div>
-          )}
-          {activePage === 'run' && (
-            <div className="animate-fadein">
-              <RunModePage />
-            </div>
-          )}
-        </div>
+      <main className="flex-1 p-8 bg-gradient-to-br from-white/5 to-gray-900/80 min-h-screen ml-64">
+        {activePage === 'llm' && (
+          <div className="animate-fadein h-full w-full">
+            <LLMInterface />
+          </div>
+        )}
+        {activePage === 'run' && (
+          <div className="animate-fadein h-full w-full">
+            <RunModePage />
+          </div>
+        )}
       </main>
       <style>{`
         .animate-fadein {
